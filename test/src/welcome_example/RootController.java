@@ -83,15 +83,15 @@ public class RootController implements Initializable{
 		double normal = 0.85;
 		double lower = 1.04;
 
-		double[] inputAvg = new double[] {87,72,61,56,40,59,88};
-		double[] inputStdev = new double[] {20,16,7,38,31,41,11};
+		double[] inputAvg = new double[] {140,149,106,62,25,79,97,59,49,98,129};
+		double[] inputStdev = new double[] {25,14,17,32,6,41,12,31,28,13,26};
 		int count=0;	//불일치 할 시 카운트 증가
 		try {
 			
 			for(int i=0; i<inputList.size(); i++) {
 				float z = (float) Math.abs((inputList.get(i) - inputAvg[i]) / inputStdev[i]);
 				System.out.println(z);
-				if(!(z < normal)) {
+				if(!(z < lower)) {
 					System.out.println((i+1) + "번째 값이 다릅니다");
 					count++;				
 				}
@@ -105,7 +105,7 @@ public class RootController implements Initializable{
 				totalInputTime += intervalList.get(i);
 			}
 			
-			if(!((float)Math.abs((totalInputTime - 760) / 52) < normal)) {
+			if(!((float)Math.abs((totalInputTime - 3217) / 369) < lower)) {
 				System.out.println("총입력시간이 다릅니다.");
 				count++;
 			}
@@ -139,8 +139,7 @@ public class RootController implements Initializable{
 //		}
 		
 		
-		
-		System.out.println("총입력 시간 : " + totalInputTime);
+		System.out.println(totalInputTime);
 		totalInputTime = 0;
 		inputList = new ArrayList<>();
 		intervalList = new ArrayList<>();
